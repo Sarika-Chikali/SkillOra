@@ -4,14 +4,20 @@ import React, { useState, useEffect } from 'react';
 import { UserPortfolio, Project, Skill, CertificationAchievement, Education, WorkExperience } from '@/lib/types/portfolio';
 import { PortfolioService } from '@/lib/services/portfolioService';
 import { 
-  User, Code2, GraduationCap, Briefcase, Award, Plus, Trash2, Check, ArrowLeft, Save, Sparkles, Building2
+  User, Code2, GraduationCap, Briefcase, Award, Plus, Trash2, Check, ArrowLeft, Save, Sparkles, Building2, Upload, AlertCircle, Crop
 } from 'lucide-react';
 import Link from 'next/link';
+import { PhotoCropModal } from '@/components/portfolio/PhotoCropModal';
 
 export const PortfolioEditor: React.FC = () => {
   const [portfolio, setPortfolio] = useState<UserPortfolio | null>(null);
   const [activeSection, setActiveSection] = useState<'info' | 'skills' | 'education' | 'projects' | 'certifications' | 'experience'>('info');
   const [saveToast, setSaveToast] = useState<string | null>(null);
+  const [photoError, setPhotoError] = useState<string | null>(null);
+  const [photoSuccess, setPhotoSuccess] = useState<string | null>(null);
+  const [cropModalOpen, setCropModalOpen] = useState(false);
+  const [cropModalSrc, setCropModalSrc] = useState<string>('');
+  const fileInputRef = React.useRef<HTMLInputElement | null>(null);
 
   // New Project State
   const [newProj, setNewProj] = useState<Partial<Project>>({
@@ -54,6 +60,68 @@ export const PortfolioEditor: React.FC = () => {
     setPortfolio(updated);
     PortfolioService.savePortfolio(updated);
     notifySave('Saved Changes');
+  };
+
+  const handlePhotoSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPhotoError(null);
+    setPhotoSuccess(null);
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    // Validate format
+    const validTypes = ['image/jpeg', 'image/png', 'image/webp'];
+    if (!validTypes.includes(file.type)) {
+      setPhotoError('Invalid file format. Please upload a JPG, PNG, or WEBP image.');
+      return;
+    }
+
+    // Validate size (5 MB max)
+    if (file.size > 5 * 1024 * 1024) {
+      setPhotoError('File size exceeds 5 MB limit. Please select a smaller image.');
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const dataUrl = event.target?.result as string;
+      if (dataUrl) {
+        setCropModalSrc(dataUrl);
+        setCropModalOpen(true);
+      }
+    };
+    reader.onerror = () => {
+      setPhotoError('Failed to process image file. Please try again.');
+    };
+    reader.readAsDataURL(file);
+    // Reset file input value so re-selecting same file triggers onChange
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
+  };
+
+  const handleEditExistingPhoto = () => {
+    if (portfolio?.avatarUrl) {
+      setPhotoError(null);
+      setPhotoSuccess(null);
+      setCropModalSrc(portfolio.avatarUrl);
+      setCropModalOpen(true);
+    }
+  };
+
+  const handleCropSave = (croppedDataUrl: string) => {
+    if (!portfolio) return;
+    handleUpdatePortfolio({ ...portfolio, avatarUrl: croppedDataUrl });
+    setPhotoSuccess('Profile photo updated successfully!');
+    setTimeout(() => setPhotoSuccess(null), 3000);
+  };
+
+  const handleRemovePhoto = () => {
+    if (!portfolio) return;
+    setPhotoError(null);
+    setPhotoSuccess(null);
+    handleUpdatePortfolio({ ...portfolio, avatarUrl: '' });
+    setPhotoSuccess('Profile photo removed.');
+    setTimeout(() => setPhotoSuccess(null), 3000);
   };
 
   // Add Project
@@ -239,6 +307,114 @@ export const PortfolioEditor: React.FC = () => {
               <User className="w-4 h-4 text-blue-600" /> Personal Persona & Contact Info
             </h2>
 
+            {/* Profile Photo Uploader Card */}
+            <div className="p-4 sm:p-5 rounded-2xl bg-slate-50 border border-slate-200/90 space-y-3">
+              <label className="text-xs font-bold text-slate-800 block">
+                Profile Photo
+              </label>
+
+              <div className="flex flex-col sm:flex-row items-center sm:items-center gap-4">
+                {/* Image Preview Thumbnail */}
+                <div className="relative shrink-0 group">
+                  {portfolio.avatarUrl ? (
+                    <button
+                      type="button"
+                      onClick={handleEditExistingPhoto}
+                      className="relative rounded-2xl overflow-hidden ring-2 ring-blue-500/30 shadow-md group-hover:ring-blue-500 transition-all text-left block"
+                      title="Click to adjust photo framing"
+                    >
+                      <img
+                        src={portfolio.avatarUrl}
+                        alt={portfolio.fullName || 'Profile Avatar'}
+                        className="w-20 h-20 sm:w-24 sm:h-24 object-cover"
+                      />
+                      <div className="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white text-[10px] font-bold gap-1 p-1 text-center">
+                        <Crop className="w-4 h-4 text-blue-300" />
+                        <span>Adjust</span>
+                      </div>
+                    </button>
+                  ) : (
+                    <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-slate-200 border-2 border-dashed border-slate-300 flex items-center justify-center text-slate-400">
+                      <User className="w-8 h-8" />
+                    </div>
+                  )}
+                </div>
+
+                {/* Controls & Helper Info */}
+                <div className="space-y-2 text-center sm:text-left flex-1 w-full sm:w-auto">
+                  <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2.5">
+                    <button
+                      type="button"
+                      onClick={() => fileInputRef.current?.click()}
+                      className="px-4 py-2.5 rounded-xl text-xs font-bold bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center gap-1.5 shadow-sm transition-all min-h-[44px]"
+                    >
+                      <Upload className="w-3.5 h-3.5" />
+                      {portfolio.avatarUrl ? 'Change Photo' : 'Upload Photo'}
+                    </button>
+
+                    {portfolio.avatarUrl && (
+                      <>
+                        <button
+                          type="button"
+                          onClick={handleEditExistingPhoto}
+                          className="px-3.5 py-2.5 rounded-xl text-xs font-semibold border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 flex items-center justify-center gap-1.5 transition-all min-h-[44px]"
+                        >
+                          <Crop className="w-3.5 h-3.5 text-blue-600" />
+                          Adjust Framing
+                        </button>
+
+                        <button
+                          type="button"
+                          onClick={handleRemovePhoto}
+                          className="px-3.5 py-2.5 rounded-xl text-xs font-semibold border border-slate-200 bg-white hover:bg-red-50 text-slate-700 hover:text-red-600 flex items-center justify-center gap-1.5 transition-all min-h-[44px]"
+                        >
+                          <Trash2 className="w-3.5 h-3.5 text-slate-400" />
+                          Remove Photo
+                        </button>
+                      </>
+                    )}
+                  </div>
+
+                  <p className="text-[11px] text-slate-500 font-medium">
+                    JPG, PNG or WEBP • Recommended: square image, max 5 MB
+                  </p>
+
+                  {/* Inline Error State */}
+                  {photoError && (
+                    <div className="p-2.5 rounded-xl bg-rose-50 border border-rose-200 text-xs font-semibold text-rose-700 flex items-center gap-1.5 justify-center sm:justify-start animate-in fade-in">
+                      <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                      <span>{photoError}</span>
+                    </div>
+                  )}
+
+                  {/* Inline Success State */}
+                  {photoSuccess && (
+                    <div className="p-2.5 rounded-xl bg-emerald-50 border border-emerald-200 text-xs font-semibold text-emerald-700 flex items-center gap-1.5 justify-center sm:justify-start animate-in fade-in">
+                      <Check className="w-3.5 h-3.5 shrink-0 text-emerald-600" />
+                      <span>{photoSuccess}</span>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Hidden File Input */}
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/jpeg,image/png,image/webp"
+                onChange={handlePhotoSelect}
+                className="hidden"
+              />
+
+              {/* Photo Crop & Adjustment Modal */}
+              <PhotoCropModal
+                isOpen={cropModalOpen}
+                imageSrc={cropModalSrc}
+                onClose={() => setCropModalOpen(false)}
+                onSave={handleCropSave}
+              />
+            </div>
+
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-1.5">
                 <label className="text-xs font-bold text-slate-700">Full Name</label>
@@ -332,7 +508,7 @@ export const PortfolioEditor: React.FC = () => {
             </div>
 
             {/* Social Links */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-3 border-t border-slate-100">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-3 border-t border-slate-100">
               <div className="space-y-1.5">
                 <label className="text-xs font-bold text-slate-700">GitHub Link</label>
                 <input
@@ -352,6 +528,17 @@ export const PortfolioEditor: React.FC = () => {
                   onChange={(e) => handleUpdatePortfolio({ ...portfolio, socialLinks: { ...portfolio.socialLinks, linkedin: e.target.value } })}
                   className="w-full px-3.5 py-2 text-xs glass-input rounded-xl"
                   placeholder="https://linkedin.com/in/..."
+                />
+              </div>
+
+              <div className="space-y-1.5">
+                <label className="text-xs font-bold text-slate-700">Twitter / X Link</label>
+                <input
+                  type="text"
+                  value={portfolio.socialLinks.twitter || ''}
+                  onChange={(e) => handleUpdatePortfolio({ ...portfolio, socialLinks: { ...portfolio.socialLinks, twitter: e.target.value } })}
+                  className="w-full px-3.5 py-2 text-xs glass-input rounded-xl"
+                  placeholder="https://twitter.com/..."
                 />
               </div>
 

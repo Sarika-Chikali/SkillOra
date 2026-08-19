@@ -4,12 +4,16 @@ import React, { useState, useEffect } from 'react';
 import { PortfolioService, PORTFOLIO_UPDATED_EVENT } from '@/lib/services/portfolioService';
 import { UserPortfolio } from '@/lib/types/portfolio';
 import { PortfolioNavbar } from '@/components/portfolio/PortfolioNavbar';
-import { PortfolioView } from '@/components/portfolio/PortfolioView';
+import { DynamicPortfolioRenderer } from '@/components/portfolio/DynamicPortfolioRenderer';
 import { ShareModal } from '@/components/portfolio/ShareModal';
+import { DeploymentModal } from '@/components/portfolio/DeploymentModal';
+
+import { initialPortfolio } from '@/lib/data/mockPortfolio';
 
 export default function PortfolioPreviewPage() {
-  const [portfolio, setPortfolio] = useState<UserPortfolio | null>(null);
+  const [portfolio, setPortfolio] = useState<UserPortfolio>(initialPortfolio);
   const [shareModalOpen, setShareModalOpen] = useState(false);
+  const [deployModalOpen, setDeployModalOpen] = useState(false);
 
   useEffect(() => {
     setPortfolio(PortfolioService.getPortfolio());
@@ -32,14 +36,15 @@ export default function PortfolioPreviewPage() {
     };
   }, []);
 
-  if (!portfolio) return null;
-
   return (
     <div className="min-h-screen bg-[#F8FAFC]">
-      <PortfolioNavbar onShareClick={() => setShareModalOpen(true)} />
+      <PortfolioNavbar
+        onShareClick={() => setShareModalOpen(true)}
+        onDeployClick={() => setDeployModalOpen(true)}
+      />
       
       <main>
-        <PortfolioView
+        <DynamicPortfolioRenderer
           portfolio={portfolio}
           onShareClick={() => setShareModalOpen(true)}
           isEditable={false}
@@ -50,6 +55,13 @@ export default function PortfolioPreviewPage() {
         isOpen={shareModalOpen}
         onClose={() => setShareModalOpen(false)}
         username={portfolio.username}
+      />
+
+      <DeploymentModal
+        isOpen={deployModalOpen}
+        onClose={() => setDeployModalOpen(false)}
+        portfolio={portfolio}
+        onDeploymentSuccess={() => setPortfolio(PortfolioService.getPortfolio())}
       />
     </div>
   );

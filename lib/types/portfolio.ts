@@ -79,6 +79,52 @@ export interface WorkExperience {
   keyAchievements: string[];
 }
 
+export type TemplateId = 
+  | 'default-overview'
+  | 'obsidian'
+  | 'editorial'
+  | 'bento'
+  | 'creative'
+  | 'developer-hub'
+  | 'executive'
+  | 'modern-dark'
+  | 'minimal-editorial'
+  | 'creative-aurora'
+  | 'professional'
+  | 'colorful-bento'
+  | 'aurora'
+  | 'neo-minimal'
+  | 'immersive';
+
+export type TemplateCategory = 
+  | 'All Templates'
+  | 'Modern'
+  | 'Minimal'
+  | 'Creative'
+  | 'Developer'
+  | 'Professional'
+  | 'Colorful';
+
+export type DeploymentPlatform = 'vercel' | 'netlify' | 'firebase' | 'render';
+
+export type DeploymentStatus = 
+  | 'idle'
+  | 'connecting'
+  | 'building'
+  | 'deploying'
+  | 'live'
+  | 'failed';
+
+export interface DeploymentInfo {
+  platform: DeploymentPlatform;
+  status: DeploymentStatus;
+  publicUrl?: string;
+  deployedAt?: string;
+  buildId?: string;
+  isRealDeployment?: boolean;
+  errorMessage?: string;
+}
+
 export interface UserPortfolio {
   id: string;
   userId: string;
@@ -98,4 +144,7 @@ export interface UserPortfolio {
   certifications: CertificationAchievement[];
   experiences: WorkExperience[];
   updatedAt: string;
+  selectedTemplateId?: TemplateId;
+  deploymentInfo?: DeploymentInfo;
 }
+

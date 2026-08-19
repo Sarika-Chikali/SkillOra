@@ -6,7 +6,7 @@ import { UserPortfolio } from '@/lib/types/portfolio';
 import { 
   Github, Linkedin, Twitter, Globe, Mail, Phone, MapPin, 
   ExternalLink, Award, CheckCircle2, Sparkles, Briefcase, 
-  GraduationCap, Download, Share2, Edit3, Code2, ShieldCheck, Building2
+  GraduationCap, Download, Share2, Edit3, Code2, ShieldCheck, Building2, User
 } from 'lucide-react';
 
 interface PortfolioViewProps {
@@ -65,11 +65,17 @@ export const PortfolioView: React.FC<PortfolioViewProps> = ({
             {/* Avatar & Core Info */}
             <div className="flex flex-col sm:flex-row items-center sm:items-end gap-5 text-center sm:text-left">
               <div className="relative shrink-0">
-                <img
-                  src={portfolio.avatarUrl || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80'}
-                  alt={portfolio.fullName}
-                  className="w-28 h-28 sm:w-32 sm:h-32 rounded-3xl object-cover ring-4 ring-white shadow-xl shadow-blue-500/10"
-                />
+                {portfolio.avatarUrl ? (
+                  <img
+                    src={portfolio.avatarUrl}
+                    alt={portfolio.fullName}
+                    className="w-28 h-28 sm:w-32 sm:h-32 rounded-3xl object-cover ring-4 ring-white shadow-xl shadow-blue-500/10"
+                  />
+                ) : (
+                  <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-3xl bg-slate-200 border border-slate-300 flex items-center justify-center text-slate-400 ring-4 ring-white shadow-xl shadow-blue-500/10">
+                    <User className="w-12 h-12 text-slate-400" />
+                  </div>
+                )}
                 <span className="absolute bottom-1 right-1 w-4 h-4 rounded-full bg-emerald-500 ring-4 ring-white" title="Active on Skillora" />
               </div>
 
@@ -110,13 +116,13 @@ export const PortfolioView: React.FC<PortfolioViewProps> = ({
             </div>
 
             {/* Quick Actions & Social Icons */}
-            <div className="flex flex-wrap items-center justify-center gap-2.5">
+            <div className="flex flex-wrap items-center justify-center gap-2.5 w-full sm:w-auto pt-2 sm:pt-0">
               {portfolio.socialLinks.github && (
                 <a
                   href={portfolio.socialLinks.github}
                   target="_blank"
                   rel="noreferrer"
-                  className="p-2.5 rounded-xl bg-slate-100 hover:bg-blue-50 text-slate-700 hover:text-blue-600 border border-slate-200/80 transition-all shadow-xs"
+                  className="p-3 rounded-xl bg-slate-100 hover:bg-blue-50 text-slate-700 hover:text-blue-600 border border-slate-200/80 transition-all shadow-xs min-h-[44px] min-w-[44px] flex items-center justify-center"
                   title="GitHub Profile"
                 >
                   <Github className="w-4 h-4" />
@@ -127,7 +133,7 @@ export const PortfolioView: React.FC<PortfolioViewProps> = ({
                   href={portfolio.socialLinks.linkedin}
                   target="_blank"
                   rel="noreferrer"
-                  className="p-2.5 rounded-xl bg-slate-100 hover:bg-blue-50 text-slate-700 hover:text-blue-600 border border-slate-200/80 transition-all shadow-xs"
+                  className="p-3 rounded-xl bg-slate-100 hover:bg-blue-50 text-slate-700 hover:text-blue-600 border border-slate-200/80 transition-all shadow-xs min-h-[44px] min-w-[44px] flex items-center justify-center"
                   title="LinkedIn Profile"
                 >
                   <Linkedin className="w-4 h-4" />
@@ -138,28 +144,30 @@ export const PortfolioView: React.FC<PortfolioViewProps> = ({
                   href={portfolio.socialLinks.twitter}
                   target="_blank"
                   rel="noreferrer"
-                  className="p-2.5 rounded-xl bg-slate-100 hover:bg-blue-50 text-slate-700 hover:text-blue-600 border border-slate-200/80 transition-all shadow-xs"
-                  title="Twitter Profile"
+                  className="p-3 rounded-xl bg-slate-100 hover:bg-blue-50 text-slate-700 hover:text-blue-600 border border-slate-200/80 transition-all shadow-xs min-h-[44px] min-w-[44px] flex items-center justify-center"
+                  title="Twitter / X Profile"
                 >
                   <Twitter className="w-4 h-4" />
+                </a>
+              )}
+              {portfolio.socialLinks.website && (
+                <a
+                  href={portfolio.socialLinks.website}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="p-3 rounded-xl bg-slate-100 hover:bg-blue-50 text-slate-700 hover:text-blue-600 border border-slate-200/80 transition-all shadow-xs min-h-[44px] min-w-[44px] flex items-center justify-center"
+                  title="Personal Website"
+                >
+                  <Globe className="w-4 h-4" />
                 </a>
               )}
 
               <button
                 onClick={handlePrintPDF}
-                className="px-3.5 py-2 rounded-xl text-xs font-semibold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 flex items-center gap-1.5 transition-all shadow-xs"
+                className="px-4 py-2.5 rounded-xl text-xs font-semibold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 flex items-center justify-center gap-1.5 transition-all shadow-xs min-h-[44px] flex-1 sm:flex-initial"
               >
                 <Download className="w-3.5 h-3.5 text-blue-600" /> PDF Resume
               </button>
-
-              {isEditable && (
-                <Link
-                  href="/portfolio/edit"
-                  className="px-4 py-2 rounded-xl text-xs font-bold bg-blue-600 hover:bg-blue-700 text-white flex items-center gap-1.5 shadow-md shadow-blue-600/20 transition-all"
-                >
-                  <Edit3 className="w-3.5 h-3.5" /> Edit Profile
-                </Link>
-              )}
             </div>
 
           </div>

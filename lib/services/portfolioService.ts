@@ -10,7 +10,27 @@ export class PortfolioService {
     try {
       const stored = localStorage.getItem(STORAGE_KEY);
       if (stored) {
-        return JSON.parse(stored);
+        const parsed = JSON.parse(stored);
+        if (parsed && typeof parsed === 'object') {
+          return {
+            ...initialPortfolio,
+            ...parsed,
+            selectedTemplateId: parsed.selectedTemplateId || 'default-overview',
+            contact: {
+              ...initialPortfolio.contact,
+              ...(parsed.contact || {}),
+            },
+            socialLinks: {
+              ...initialPortfolio.socialLinks,
+              ...(parsed.socialLinks || {}),
+            },
+            skills: Array.isArray(parsed.skills) ? parsed.skills : initialPortfolio.skills,
+            education: Array.isArray(parsed.education) ? parsed.education : initialPortfolio.education,
+            projects: Array.isArray(parsed.projects) ? parsed.projects : initialPortfolio.projects,
+            certifications: Array.isArray(parsed.certifications) ? parsed.certifications : initialPortfolio.certifications,
+            experiences: Array.isArray(parsed.experiences) ? parsed.experiences : initialPortfolio.experiences,
+          };
+        }
       }
     } catch (e) {
       console.error('Failed to load portfolio from LocalStorage:', e);
@@ -123,6 +143,18 @@ export class PortfolioService {
     return this.savePortfolio(updated);
   }
 
+  static setSelectedTemplate(templateId: UserPortfolio['selectedTemplateId']): UserPortfolio {
+    const current = this.getPortfolio();
+    const updated = { ...current, selectedTemplateId: templateId };
+    return this.savePortfolio(updated);
+  }
+
+  static updateDeploymentInfo(deploymentInfo: UserPortfolio['deploymentInfo']): UserPortfolio {
+    const current = this.getPortfolio();
+    const updated = { ...current, deploymentInfo };
+    return this.savePortfolio(updated);
+  }
+
   // Experience CRUD
   static addExperience(exp: Omit<WorkExperience, 'id'>): UserPortfolio {
     const current = this.getPortfolio();
@@ -141,3 +173,4 @@ export class PortfolioService {
     return this.savePortfolio(updated);
   }
 }
+

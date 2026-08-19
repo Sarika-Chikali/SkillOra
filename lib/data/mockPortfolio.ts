@@ -141,4 +141,5 @@ export const initialPortfolio: UserPortfolio = {
     },
   ],
   updatedAt: '2026-08-15',
+  selectedTemplateId: 'default-overview',
 };

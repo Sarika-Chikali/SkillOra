@@ -3,13 +3,14 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Sparkles, Edit3, Eye, Share2, Menu, X, ArrowLeft, Check, Copy } from 'lucide-react';
+import { Sparkles, Edit3, Eye, Share2, Menu, X, Check, Copy, Rocket } from 'lucide-react';
 
 interface PortfolioNavbarProps {
   onShareClick?: () => void;
+  onDeployClick?: () => void;
 }
 
-export const PortfolioNavbar: React.FC<PortfolioNavbarProps> = ({ onShareClick }) => {
+export const PortfolioNavbar: React.FC<PortfolioNavbarProps> = ({ onShareClick, onDeployClick }) => {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -85,6 +86,13 @@ export const PortfolioNavbar: React.FC<PortfolioNavbarProps> = ({ onShareClick }
         {/* Right Actions */}
         <div className="hidden sm:flex items-center gap-2.5">
           <button
+            onClick={onDeployClick}
+            className="px-4 py-1.5 rounded-xl text-xs font-extrabold bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white flex items-center gap-1.5 shadow-md shadow-blue-600/20 transition-all hover:scale-[1.02]"
+          >
+            <Rocket className="w-3.5 h-3.5" /> Deploy Portfolio
+          </button>
+
+          <button
             onClick={copyQuickLink}
             className="px-3 py-1.5 rounded-xl text-xs font-semibold border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 flex items-center gap-1.5 transition-all shadow-xs"
           >
@@ -94,9 +102,9 @@ export const PortfolioNavbar: React.FC<PortfolioNavbarProps> = ({ onShareClick }
 
           <button
             onClick={onShareClick}
-            className="px-4 py-1.5 rounded-xl text-xs font-semibold bg-blue-600 hover:bg-blue-700 text-white flex items-center gap-1.5 shadow-md shadow-blue-600/20 transition-all hover:scale-[1.02]"
+            className="px-3 py-1.5 rounded-xl text-xs font-semibold border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 flex items-center gap-1.5 transition-all shadow-xs"
           >
-            <Share2 className="w-3.5 h-3.5" /> Share Portfolio
+            <Share2 className="w-3.5 h-3.5" /> Share
           </button>
         </div>
 
@@ -142,22 +150,31 @@ export const PortfolioNavbar: React.FC<PortfolioNavbarProps> = ({ onShareClick }
             <Eye className="w-4 h-4" /> Public Preview
           </Link>
 
-          <div className="pt-2 border-t border-slate-100 flex gap-2">
+          <div className="pt-2 border-t border-slate-100 flex flex-col gap-2">
             <button
-              onClick={() => { copyQuickLink(); setMobileMenuOpen(false); }}
-              className="flex-1 py-2 text-xs font-semibold border border-slate-200 rounded-xl bg-slate-50 text-slate-700 flex items-center justify-center gap-1.5"
+              onClick={() => { if (onDeployClick) onDeployClick(); setMobileMenuOpen(false); }}
+              className="w-full py-2.5 text-xs font-extrabold bg-blue-600 text-white rounded-xl flex items-center justify-center gap-1.5 shadow-sm"
             >
-              <Copy className="w-3.5 h-3.5" /> Copy URL
+              <Rocket className="w-4 h-4" /> Deploy Portfolio
             </button>
-            <button
-              onClick={() => { if (onShareClick) onShareClick(); setMobileMenuOpen(false); }}
-              className="flex-1 py-2 text-xs font-semibold bg-blue-600 text-white rounded-xl flex items-center justify-center gap-1.5 shadow-sm"
-            >
-              <Share2 className="w-3.5 h-3.5" /> Share
-            </button>
+            <div className="flex gap-2">
+              <button
+                onClick={() => { copyQuickLink(); setMobileMenuOpen(false); }}
+                className="flex-1 py-2 text-xs font-semibold border border-slate-200 rounded-xl bg-slate-50 text-slate-700 flex items-center justify-center gap-1.5"
+              >
+                <Copy className="w-3.5 h-3.5" /> Copy URL
+              </button>
+              <button
+                onClick={() => { if (onShareClick) onShareClick(); setMobileMenuOpen(false); }}
+                className="flex-1 py-2 text-xs font-semibold border border-slate-200 rounded-xl bg-slate-50 text-slate-700 flex items-center justify-center gap-1.5"
+              >
+                <Share2 className="w-3.5 h-3.5" /> Share
+              </button>
+            </div>
           </div>
         </div>
       )}
     </header>
   );
 };
+
