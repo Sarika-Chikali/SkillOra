@@ -1,0 +1,620 @@
+pages: 39
+--- PAGE 1 ---
+SKILLORA
+ 
+--- PAGE 2 ---
+SKILLORA  
+ 
+ 
+--- PAGE 3 ---
+ 
+Career  Vault  
+--- PAGE 4 ---
+CAREER  VAULT  
+File  Upload:   PDF,DOC,DOCX,PPT,PPTX,XLS,XLSX,JPG,JPEG,PNG,GIF,MP3,MP4,ZIP,TXT,
+CSV……..
+  File  Storage:  ●   Store  files  ●  View  files  ●  Download  files[HD  Quality,How  they  uploaded  first  they  get  the  same  quality]  ●  Delete  ●  Rename  ●  Edit  ●  Move  ●  Share   AI  Files  Analysis:         Text  Extraction  
+[Tools
+ 
+→
+ 
+PDFMiner,PYMUpdf,OCR
+ 
+Engines]
+                                                 ↓
+                               OCR  [OPTICAL  CHARACTER  RECOGNISATION]                                                    (IF  Certificate  is  an  image)  
+                                                       
+      ↓                                                      AI  CLASSIFICATION  
+                                                                  
+  ↓                                                   INFORMATION  EXTRACTION                                [Cname,Categeory,Duration,Comapny,Level,Skills,SearchTag]  
+                                                                     
+ ↓                                                    Certificate  Provider  Detection  
+                                                                       
+↓                                                             Folder  Decision    [It  will  decide  whether  it  has  to  create  a  new  folder  for  the  certificate/it  will   keep  
+the
+ 
+certificate
+ 
+in
+ 
+the
+ 
+existing
+ 
+folder.]
+ 
+        
+ ↓              Generate  Search  Tags   
+ 
+--- PAGE 5 ---
+ 
+Duplication  Detection:                   If  Duplicate  Certificates  or  Files  are  detected  it  will  show  a  pop-up  like:  
+                                
+“
+Keep
+ 
+both
+ 
+or
+ 
+remove
+ 
+one..?”
+  Automatic  Folder  Creation:  ●  When  the  user  uploads  files,  certificates  or  generates  number  of  
+resumes
+ 
+with
+ 
+AI,all
+ 
+they
+ 
+are
+ 
+in
+ 
+clumsy
+ 
+order
+ 
+with
+ 
+the
+ 
+help
+ 
+of
+ 
+automated
+ 
+folder
+ 
+creation
+ 
+the
+ 
+resumes,certificates
+ 
+and
+ 
+files
+ 
+are
+ 
+in
+ 
+folders
+ 
+in
+ 
+neat
+ 
+order.
+   
+      
+             POP-UP  After  Successful  Uploadation,  The  pop-up  will  appear  like  →”CAN  I  ADD  THIS  
+NEW
+ 
+CERTIFICATE/
+ 
+FILE
+ 
+TO
+ 
+YOUR
+ 
+RESUME
+ 
+&
+ 
+PORTIFOLIO”.
+ 
+                                     
+“YES
+ 
+OR
+ 
+NO”
+ As  per  your  request  the  uploading  will  done.  
+If
+ 
+your
+ 
+request
+ 
+is
+ 
+ ●  YES  →  The  Certificate/File  will  be  added(Resume&Portfolio)  ●   NO  →  The  Certificate/File  will  not  be  added  in  Resume&Portfolio        Smart  Search:  
+        
+AI
+ 
+Starts
+ 
+Conversation:
+ 
+                 
+User
+ 
+asks
+  
+:
+ 
+“
+ 
+Where
+ 
+is
+ 
+AWS
+ 
+Certificate..?”
+ 
+
+--- PAGE 6 ---
+ 
+                   AI              :  Certificate  —>  AWS  —>  AWS  Certificate                  User  asks    :  “Show  all  files  related  to  java..?”               AI   Displays    :          Java  cc                                               Java  certificate                                               Java  course                                               Java  learning    LinkedIn  Post:  After  Successfully  Uploadation  of  certificates  and  files  in  folders  below  it  shows  a  
+button
+ 
+called
+  ”LINKEDIN  POST”.  If  we  click  on  the  button,It  will  navigate  to  
+the
+  
+below
+ 
+figures
+ 
+shown,
+ 
+if
+ 
+you
+ 
+want
+ 
+to
+ 
+upload
+ 
+the
+ 
+certificate
+ 
+in
+ 
+linkedin
+ 
+posts
+ 
+     
+→
+ 
+We
+ 
+will
+ 
+upload
+ 
+our
+ 
+Linkedin
+ 
+profile
+ 
+URL
+ 
+in
+ 
+the
+ 
+text
+ 
+area.
+      →  Click  on  upload.  It  will  post  the  certificate  to  there  linkedin  profile.    
+ 
+ 
+
+--- PAGE 7 ---
+ 
+  
+ 
+
+--- PAGE 8 ---
+ 
+AI  Interviews
+ 
+--- PAGE 9 ---
+AI  INTERVIEWS    
+1.MOCK  INTERVIEW:
+              
+                                                               
+  
+                    ↓
+NEXT
+ 
+STEP
+ 
+ 
+ 
+ 
+       
+                      ↓
+     [ When  we  click  on  the  “Start  Interview”  the  page    redirect  to  the  next  figure  below ]                
+ 
+
+--- PAGE 10 ---
+ 
+             
+                                                                      
+↓   
+                     ↓  
+
+--- PAGE 11 ---
+ 
+           
+                         ↓                    ↓        
+
+--- PAGE 12 ---
+ 
+                 ↓                                              ↓       
+
+--- PAGE 13 ---
+ 
+↓                              
+--- PAGE 14 ---
+ 
+   2.MOCK  TESTS:    
+                       ↓  
+                     ↓   
+
+--- PAGE 15 ---
+ 
+  ↓     ↓     ↓      
+
+--- PAGE 16 ---
+ 
+↓   
+ ↓      
+
+--- PAGE 17 ---
+ 
+ ↓         ↓    
+
+--- PAGE 18 ---
+ 
+ ↓   
+ ↓      
+
+--- PAGE 19 ---
+ 
+ ↓          
+
+--- PAGE 20 ---
+ 
+Portifolio
+ 
+--- PAGE 21 ---
+PORTIFOLIO   
+Portfolio  Creation  Engine  Creates  Portifolio  
+↓  
+ ↓  Branch  Based  templates  
+ ↓  
+ 
+
+--- PAGE 22 ---
+ 
+Dynamic  Portfolio  Generation  
+ ↓  Easy  Editing  
+↓  Single  click  Deploy   Deployment  Workflow  1.Click  Deploy  Portfolio.  2.Select  a  deployment  platform:  ●  Vercel  ●  Netlify  3.If  the  selected  platform  is  not  connected,  the  user  is  prompted  to  sign  in  or  
+link
+ 
+their
+ 
+existing
+ 
+account.
+ 4.After  successful  authentication,  SkillOra  automatically:  ●  Builds  the  portfolio.  ●  Deploys  it  to  the  selected  platform.  ●  Generates  a  live,  publicly  accessible  portfolio  URL.   5.The  deployed  portfolio  can  be  updated  anytime.  Clicking  Redeploy  publishes  
+the
+ 
+latest
+ 
+changes
+ 
+without
+ 
+requiring
+ 
+manual
+ 
+setup.
+ 
+
+--- PAGE 23 ---
+ 
+ 
+↓  Public  URL  Generation   
+Public  Portfolio  After  deployment,  the  user  receives:  ●  A  live  portfolio  URL.  ●  A  shareable  preview  card  (Open  Graph  enabled)  that  displays  the  
+portfolio
+ 
+thumbnail,
+ 
+name,
+ 
+title,
+ 
+and
+ 
+short
+ 
+description
+ 
+when
+ 
+shared
+ 
+on
+ 
+platforms
+ 
+like
+ 
+WhatsApp,
+ 
+LinkedIn,
+ 
+X,
+ 
+Facebook,
+ 
+and
+ 
+other
+ 
+supported
+ 
+social
+ 
+platforms.
+ 
+  Deployment  Status  Users  can  monitor  deployment  progress  in  real  time:  ●  Connecting  Account  ●  Building  Portfolio  ●  Deploying  ●  Live  Successfully  ●  Deployment  Failed  (with  retry  option)   
+
+--- PAGE 24 ---
+ 
+This  creates  a  seamless,  one-click  publishing  experience,  allowing  users  to  
+focus
+ 
+on
+ 
+building
+ 
+their
+ 
+professional
+ 
+profile
+ 
+while
+ 
+SkillOra
+ 
+handles
+ 
+the
+ 
+technical
+ 
+deployment
+ 
+process.
+  
+--- PAGE 25 ---
+ 
+Resume
+ 
+--- PAGE 26 ---
+RESUME  
+   
+  
+                       After  click  Base  Resume  Button  
+↓  
+ ↓  
+ 
+
+--- PAGE 27 ---
+ 
+ ↓  
+
+--- PAGE 28 ---
+ 
+ If  we  click  on  the  templates  dropdown  i  will  show  
+↓   
+         
+
+--- PAGE 29 ---
+ 
+JOB  DESCRIPTED  RESUME:  
+  UI  :  
+  
+
+--- PAGE 30 ---
+ 
+Skill  Gap
+ 
+--- PAGE 31 ---
+SKILL  GAP  
+  Understand  Target  Role  
+↓  Analyze  User  Profile  
+ 
+↓  Skill  Matching  
+ 
+↓  Gap  Detection  
+↓  Personalized  Roadmap  
+ 
+
+--- PAGE 32 ---
+ 
+ 
+↓  Recommended  Courses  
+  
+ 
+
+--- PAGE 33 ---
+ 
+Personality  Development
+ 
+--- PAGE 34 ---
+PERSONALITY  DEVELOPMENT  
+  
+                  For   Every  3  days  MCQ’s  will  be  Asked  
+↓                    So  AI  will  Understand  the  User  Interests,Strengths,&  Weakness   
+                                                          
+↓
+   
+                                          AI  Finally  Concludes  the  User  Behaviour  
+                                     
+                                                                          
+ 
+↓
+ 
+         So,To  build  the  User’s  Personality  strong  it  recommended  the  courses   
+ 
+
+--- PAGE 35 ---
+ 
+                             
+
+--- PAGE 36 ---
+ 
+Job  Openings  
+--- PAGE 37 ---
+JOB  OPENINGS  
+ 
+If  anyone  had  posted  any  job  openings,If  it  matches  to  your  
+profile(80%-100%)
+ 
+it
+ 
+will
+ 
+appear
+ 
+like
+ 
+Suggestion
+ 
+to
+ 
+the
+ 
+Profile
+ 
+match
+ 
+job
+ 
+section
+ 
+and
+ 
+send
+ 
+it
+ 
+to
+ 
+Whatsapp
+ 
+like
+ 
+in
+ 
+Message
+ 
+format.
+  
+  
+The  job  card  should  be  visible  like  this  :  
+ 
+
+--- PAGE 38 ---
+ 
+ 
+If  the  user  click  on  apply  it  has  to  show   ●  Apply  Here   [ From  App ]  ●  Register  [ Create  Account  Before  Apply ]   ❖  If  we  click  either  on  APPLY  HERE  or  AFTER  REGISTRATION   
+                                               ↓                         Automatically  Applied  to  that  job  (i,e.Already  Resume  is  in  the  App,  A  link  shows  up  so  the  user  can  
+see
+ 
+there’s
+ 
+information
+ 
+for
+ 
+applying
+ 
+to
+ 
+the
+ 
+job,
+ 
+or
+ 
+else
+ 
+the
+ 
+user
+ 
+can
+ 
+click
+ 
+on
+ 
+the
+ 
+button
+ 
+and
+ 
+directly
+ 
+apply
+ 
+for
+ 
+the
+ 
+job.)
+  After  applying  the  Job    ❖   A  Tracking  system  will  shows  up,it  show  the  status  of  the  
+job(accepted
+ 
+or
+ 
+rejected)
+             
+
+--- PAGE 39 ---
+ 
+❖  In  Overall  Section  a  “SEARCH  BAR  “will  appear   
+     
+

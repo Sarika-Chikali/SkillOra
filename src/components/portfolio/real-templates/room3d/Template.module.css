@@ -1,0 +1,100 @@
+.app {
+  position: relative;
+  background: linear-gradient(135deg, #111827, #3b1a6b);
+  color: #fff;
+  font-family: "Nunito", system-ui, sans-serif;
+  overflow-x: clip;
+  transition: background 0.6s;
+  -webkit-font-smoothing: antialiased;
+}
+.night { background: linear-gradient(135deg, #05060f, #1a0d33); }
+.app * { box-sizing: border-box; }
+:where(.app h1, .app h2, .app h3, .app p) { margin: 0; }
+:where(.app a) { color: inherit; text-decoration: none; }
+
+.topbar { position: sticky; top: 0; z-index: 30; display: flex; justify-content: space-between; align-items: center; padding: 14px 28px; background: rgba(17, 24, 39, 0.55); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+.brand { width: 38px; height: 38px; border-radius: 12px; background: linear-gradient(135deg, #7c5cff, #ff6b81); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; }
+.topbar nav { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; justify-content: flex-end; }
+.topbar button { background: transparent; border: none; color: rgba(255, 255, 255, 0.7); font-family: inherit; font-size: 14px; font-weight: 600; padding: 8px 14px; border-radius: 10px; cursor: pointer; transition: 0.2s; }
+.topbar button:hover { color: #fff; background: rgba(255, 255, 255, 0.08); }
+.topActive { color: #fff !important; background: rgba(124, 92, 255, 0.35) !important; }
+.modeBtn { border: 1px solid rgba(255, 255, 255, 0.2) !important; margin-left: 8px; }
+
+.hero { position: relative; height: 100vh; min-height: 620px; }
+.canvas { position: absolute; inset: 0; }
+.roomStatic { position: absolute; left: 50%; top: 52%; width: 56%; height: 52%; transform: translate(-50%, -50%); border-radius: 10px; box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5); background:
+  linear-gradient(#e9e4ff, #e9e4ff) 50% 33% / 20% 3% no-repeat,
+  linear-gradient(#5b47d6, #5b47d6) 50% 38% / 26% 22% no-repeat,
+  linear-gradient(#14121c, #14121c) 50% 38% / 29% 26% no-repeat,
+  linear-gradient(#b98a5c, #b98a5c) 50% 64% / 52% 5% no-repeat,
+  linear-gradient(#c9b7a1, #c9b7a1) 0 100% / 100% 30% no-repeat,
+  #6f5bd6; }
+.heroText { position: absolute; left: 32px; bottom: 48px; z-index: 5; pointer-events: none; max-width: 32rem; }
+.kicker { font-size: 13px; letter-spacing: 0.25em; text-transform: uppercase; color: #b7a8ff; font-weight: 800; margin-bottom: 8px; }
+.heroText h1 { font-size: clamp(2.6rem, 6.5vw, 5rem); font-weight: 800; line-height: 1; letter-spacing: -0.02em; text-shadow: 0 6px 30px rgba(0, 0, 0, 0.4); }
+.headline { margin-top: 10px; font-size: clamp(1rem, 1.6vw, 1.3rem); color: rgba(255, 255, 255, 0.85); font-weight: 600; }
+.hint { margin-top: 18px; font-size: 12px; color: rgba(255, 255, 255, 0.55); }
+
+.finderWrap { padding: 70px 20px 60px; display: flex; flex-direction: column; align-items: center; gap: 30px; }
+.finder { width: min(1040px, 100%); background: rgba(250, 250, 253, 0.97); color: #23202e; border-radius: 16px; overflow: hidden; box-shadow: 0 40px 90px rgba(0, 0, 0, 0.55); }
+.titlebar { display: flex; align-items: center; gap: 16px; padding: 12px 16px; background: linear-gradient(#efeef5, #e4e2ee); border-bottom: 1px solid #d4d1e1; }
+.dots { display: flex; gap: 7px; }
+.dots i { width: 12px; height: 12px; border-radius: 50%; display: block; }
+.path { flex: 1; text-align: center; font-size: 13px; font-weight: 700; color: #4b4660; margin-right: 50px; }
+.path b { opacity: 0.5; margin: 0 4px; }
+.finderBody { display: grid; grid-template-columns: 200px 1fr; min-height: 470px; }
+.sidebar { background: #efeef6; border-right: 1px solid #dcd9e8; padding: 16px 10px; display: flex; flex-direction: column; gap: 3px; }
+.sidebar p { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: #948fa8; padding: 0 10px 6px; }
+.sidebar button { display: flex; align-items: center; gap: 10px; text-align: left; border: none; background: transparent; padding: 8px 10px; border-radius: 8px; font-family: inherit; font-size: 14px; font-weight: 600; color: #3c3752; cursor: pointer; }
+.sidebar button:hover { background: rgba(124, 92, 255, 0.1); }
+.sideOn { background: #7c5cff !important; color: #fff !important; }
+.pane { padding: 26px 30px; overflow: auto; max-height: 560px; }
+.paneTitle { font-size: 1.5rem; font-weight: 800; margin-bottom: 18px; }
+.muted { color: #7a7590; font-size: 14px; }
+
+.aboutHead { display: flex; align-items: center; gap: 18px; margin-bottom: 20px; }
+.aboutHead h2 { font-size: 1.7rem; font-weight: 800; }
+.avatar { width: 76px; height: 76px; border-radius: 20px; background: linear-gradient(135deg, #7c5cff, #ff6b81); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; font-weight: 800; overflow: hidden; flex-shrink: 0; }
+.avatar img { width: 100%; height: 100%; object-fit: cover; }
+.doc { background: #fff; border: 1px solid #e3e0ee; border-radius: 12px; padding: 18px 22px; font-size: 15px; line-height: 1.75; display: flex; flex-direction: column; gap: 12px; white-space: pre-line; }
+.docName { font-family: ui-monospace, Menlo, monospace; font-size: 12px; color: #7c5cff; font-weight: 700; }
+
+.rows { display: flex; flex-direction: column; }
+.skillRow, .fileRow, .fileRowTall { display: grid; align-items: center; gap: 14px; padding: 12px 10px; border-bottom: 1px solid #eceaf4; border-radius: 8px; }
+.skillRow { grid-template-columns: 30px 1fr minmax(100px, 35%) 46px; }
+.fileRow { grid-template-columns: 30px 1fr auto; }
+.fileRowTall { grid-template-columns: 30px 1fr auto; align-items: start; }
+.fileRow:hover, .skillRow:hover { background: #f3f0ff; }
+.fileIcon { font-size: 20px; text-align: center; }
+.fileName { font-weight: 700; font-size: 15px; display: flex; flex-direction: column; gap: 2px; }
+.fileName em { font-style: normal; font-weight: 600; font-size: 13px; color: #7a7590; }
+.fileName small { font-weight: 400; font-size: 13px; color: #55506b; line-height: 1.55; margin-top: 4px; white-space: pre-line; }
+.date { font-size: 12px; color: #8c87a2; font-weight: 700; white-space: nowrap; }
+.meter { height: 8px; border-radius: 8px; background: #e6e3f2; overflow: hidden; }
+.meter span { display: block; height: 100%; background: linear-gradient(90deg, #7c5cff, #ff6b81); border-radius: 8px; }
+.pct { text-align: right; font-size: 13px; font-weight: 800; color: #5b47d6; font-variant-numeric: tabular-nums; }
+
+.folderGrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 14px; }
+.folder { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 14px 8px; border: none; background: transparent; border-radius: 12px; font-family: inherit; font-size: 13px; font-weight: 700; color: #3c3752; cursor: pointer; text-align: center; }
+.folder:hover { background: #f0edff; }
+.folderIcon { width: 74px; height: 74px; border-radius: 16px; background: linear-gradient(135deg, #ffe08a, #ffb84d); display: flex; align-items: center; justify-content: center; font-size: 38px; overflow: hidden; }
+.folderIcon img { width: 100%; height: 100%; object-fit: cover; }
+.detail { display: flex; flex-direction: column; gap: 14px; }
+.detail h3 { font-size: 1.4rem; font-weight: 800; }
+.detail p { font-size: 15px; line-height: 1.7; color: #3c3752; }
+.back { align-self: flex-start; border: none; background: #efeef6; border-radius: 8px; padding: 6px 12px; font-family: inherit; font-weight: 700; color: #5b47d6; cursor: pointer; }
+.shot { width: 100%; max-height: 260px; object-fit: cover; border-radius: 12px; }
+.tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.tags span { background: #efeaff; color: #5b47d6; border-radius: 999px; padding: 3px 12px; font-size: 12px; font-weight: 700; }
+.links { display: flex; gap: 18px; }
+.links a { font-weight: 800; color: #5b47d6; }
+.footer { font-size: 12px; color: rgba(255, 255, 255, 0.5); }
+
+@media (max-width: 720px) {
+  .finderBody { grid-template-columns: 1fr; }
+  .sidebar { flex-direction: row; overflow-x: auto; border-right: none; border-bottom: 1px solid #dcd9e8; padding: 10px; }
+  .sidebar p { display: none; }
+  .sidebar button { white-space: nowrap; }
+  .topbar nav button:not(.modeBtn) { display: none; }
+  .heroText { left: 18px; bottom: 34px; }
+}

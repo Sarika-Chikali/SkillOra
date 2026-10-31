@@ -1,0 +1,47 @@
+/* Design tokens + reset, scoped to `.app` instead of :root/html/body/* —
+   see uzairDeveloper/Template.module.css for why bare element selectors in
+   a CSS Module are dangerous once embedded in a larger page. */
+.app {
+  min-height: 100vh;
+  background-color: #000000;
+  color: #f0f0f0;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.app * {
+  box-sizing: border-box;
+}
+
+.app img,
+.app video {
+  max-width: 100%;
+  display: block;
+}
+
+.app::-webkit-scrollbar {
+  width: 4px;
+}
+
+.app::-webkit-scrollbar-track {
+  background: #000;
+}
+
+.app::-webkit-scrollbar-thumb {
+  background: #0066ff;
+  border-radius: 100px;
+}
+
+.app ::selection {
+  background: rgba(0, 102, 255, 0.3);
+  color: #fff;
+}
+
+.sectionLayer {
+  position: relative;
+}

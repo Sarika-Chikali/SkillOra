@@ -1,0 +1,87 @@
+/* src/components/sections/Projects.module.css */
+.projects {
+  padding: 10rem 0;
+  background: #000;
+  position: relative;
+}
+
+.projects::before {
+  content: "";
+  position: absolute;
+  bottom: -100px;
+  right: -150px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(0, 102, 255, 0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 3rem;
+}
+
+.titleBlock {
+  margin-bottom: 4rem;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #0066ff;
+  margin-bottom: 1rem;
+}
+
+.headline {
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: #f0f0f0;
+  margin: 0 0 0.75rem;
+  line-height: 1.1;
+}
+
+.accent {
+  background: linear-gradient(135deg, #0066ff 0%, #00aaff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.sub {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.7;
+  max-width: 520px;
+  margin: 0;
+}
+
+/* Bento Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  grid-auto-rows: auto;
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .projects {
+    padding: 5rem 0;
+  }
+  .container {
+    padding: 0 1.5rem;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
